@@ -58,12 +58,16 @@ MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true 
     })
     .catch(err => console.error(err));
 
-const storage = multer.memoryStorage();
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '/tmp');  // Use the temporary directory for uploads
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
 const upload = multer({ storage });
-
-
-
-
 
 
 
