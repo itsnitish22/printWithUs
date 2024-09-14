@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieparser()); // Add this to parse cookies in requests
 
-const mongoURI = `mongodb://localhost:27017/printWithUs`;
+const mongoURI = `mongodb+srv://nikhilsharma24:oz9KthwlB5ahQg2N@cluster0.txzrq.mongodb.net/`;
 
 MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(client => {
