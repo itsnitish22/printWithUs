@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="stylesheets\orderstyle.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .summary {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .summary h2 {
+            margin-top: 0;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Order Summary</h1>
+    </header>
+
+    <!-- Summary Section -->
+    <section class="summary">
+        <h2>Thank you for your order!</h2>
+        <p>We have received your order and will process it shortly. Here are the details:</p>
+        
+        <!-- Order details -->
+        <p><strong>Name: <%= orderdetail.Name %></strong> <span id="summaryName"></span></p>
+        <p><strong>Contact Number:<%= orderdetail.Contact_Number %></strong> <span id="summaryContact"></span></p>
+        <p><strong>Email:<%= orderdetail.Email %></strong> <span id="summaryEmail"></span></p>
+        <p><strong>Preferred Time Slot:<%= orderdetail.Preferred_Time_Slot %></strong> <span id="summaryTime"></span></p>
+        <p><strong>Service: <%= orderdetail.Select_Service %></strong> <span id="summaryService"></span></p>
+        <p><strong>Number of Copies: <%= orderdetail.Number_of_Copies %></strong> <span id="summaryCopies"></span></p>
+        <p><strong>Paper Size:<%= orderdetail.Paper_Size %></strong> <span id="summaryPaperSize"></span></p>
+       
+
+        <a href="/payment"><button>Print Summary</button></a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Thank you for choosing our service!</p>
+    </footer>
+
+    <!-- Script to populate order summary -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the order data from localStorage or another source
+            const orderData = {
+                name: localStorage.getItem('name'),
+                contact: localStorage.getItem('contact'),
+                email: localStorage.getItem('email'),
+                orderTime: localStorage.getItem('orderTime'),
+                service: localStorage.getItem('service'),
+                copies: localStorage.getItem('copies'),
+                paperSize: localStorage.getItem('paper_size'),
+                bindingOption: localStorage.getItem('binding_option')
+            };
+
+            // Populate the summary page
+            document.getElementById('summaryName').textContent = orderData.name;
+            document.getElementById('summaryContact').textContent = orderData.contact;
+            document.getElementById('summaryEmail').textContent = orderData.email;
+            document.getElementById('summaryTime').textContent = orderData.orderTime;
+            document.getElementById('summaryService').textContent = orderData.service;
+            document.getElementById('summaryCopies').textContent = orderData.copies;
+            document.getElementById('summaryPaperSize').textContent = orderData.paperSize;
+            document.getElementById('summaryBindingOption').textContent = orderData.bindingOption;
+        });
+    </script>
+</body>
+</html>

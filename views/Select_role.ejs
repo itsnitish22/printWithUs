@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintWithUs</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('https://burst.shopifycdn.com/photos/tech-meeting-flatlay.jpg?width=1000&format=pjpg&exif=0&iptc=0') no-repeat center center fixed; /* Add your background image here */
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        header {
+            background-color: #ff4d4d; /* Replace with your dynamic header color */
+            padding: 15px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            margin: 100px auto 30px; /* Added margin to push content below the header */
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            backdrop-filter: blur(5px); /* Optional: Adds a frosted glass effect */
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .card button {
+            background-color: #ff4d4d; /* Replace with your dynamic button color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .card button:hover {
+            background-color: #e43d3d; /* Replace with your dynamic button hover color */
+        }
+    </style>
+</head>
+<body>
+
+    <header>PrintWithUs</header>
+
+    <div class="container">
+        <!-- User Login Card -->
+        <div class="card">
+            <img src="images\WhatsApp Image 2024-09-14 at 00.58.27_19e02bf6.jpg" alt="User Icon">
+            <p>Login as User</p>
+            <button onclick="window.location.href='/login'">Login/Register</button>
+        </div>
+
+        <!-- Shopkeeper Login Card -->
+        <div class="card">
+            <img src="images\WhatsApp Image 2024-09-14 at 00.58.27_f2c8a149.jpg" alt="Shopkeeper Icon">
+            <p>Login as Shopkeeper</p>
+            <button onclick="window.location.href='/login/shopkeeper'">Login/Register</button>
+        </div>
+    </div>
+
+</body>
+</html>

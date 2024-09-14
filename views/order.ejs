@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Form</title>
+    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f9;
+          margin: 0;
+          padding: 0;
+          color: #333;
+      }
+      header {
+          background: #333;
+          color: #fff;
+          padding: 10px 0;
+          text-align: center;
+      }
+      .order-form {
+          width: 80%;
+          margin: auto;
+          padding: 20px;
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .form-group {
+          margin-bottom: 15px;
+      }
+      .form-group label {
+          display: block;
+          margin-bottom: 5px;
+      }
+      .form-group input, .form-group select {
+          width: 100%;
+          padding: 8px;
+          box-sizing: border-box;
+      }
+      .form-group input[type="file"] {
+          padding: 3px;
+      }
+      .time-slot-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 15px;
+      }
+      .time-slot-button {
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          flex: 1 1 100px;
+          text-align: center;
+      }
+      .time-slot-button.selected {
+          background-color: #0056b3;
+      }
+      button[type="submit"] {
+          background-color: #28a745;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+      button[type="submit"]:hover {
+          background-color: #218838;
+      }
+      footer {
+          background: #333;
+          color: #fff;
+          padding: 10px 0;
+          text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1>Order Your Prints and Binding Services</h1>
+    </header>
+
+    <!-- Order Form Section -->
+    <section class="order-form">
+      <h1>PDF Upload</h1>
+
+      <!-- Check if no file is uploaded -->
+      <% if (!filename) { %>
+      <!-- If no PDF is uploaded, show the upload form -->
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file_upload">Upload PDF:</label>
+          <input type="file" name="file_upload" id="file_upload" required />
+        </div>
+        <button type="submit">Upload</button>
+      </form>
+      <% } else { %>
+      <!-- If PDF is uploaded, show the create order form -->
+      <form id="orderForm" action="/createorder" method="post">
+   
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" required />
+        </div>
+
+        <!-- Contact -->
+        <div class="form-group">
+          <label for="contact">Contact Number:</label>
+          <input
+            type="text"
+            name="contact"
+            id="contact"
+            required
+            pattern="[0-9]{10}"
+            title="Please enter a valid 10-digit phone number."
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" required />
+        </div>
+
+        <!-- Timeslot -->
+        <div class="form-group">
+          <label for="orderTime">Preferred Time Slot:</label>
+          <div class="time-slot-container">
+            <button type="button" class="time-slot-button" data-time="09:20">09:20 - 10:20</button>
+            <button type="button" class="time-slot-button" data-time="10:20">10:20 - 11:20</button>
+            <button type="button" class="time-slot-button" data-time="11:20">11:20 - 12:20</button>
+            <button type="button" class="time-slot-button" data-time="12:20">12:20 - 01:20</button>
+            <button type="button" class="time-slot-button" data-time="01:20">01:20 - 02:20</button>
+            <button type="button" class="time-slot-button" data-time="02:20">02:20 - 03:20</button>
+            <button type="button" class="time-slot-button" data-time="03:20">03:20 - 04:20</button>
+          </div>
+          <input type="hidden" name="orderTime" id="orderTime" required />
+        </div>
+
+        <!-- Service Selection -->
+        <div class="form-group">
+          <label for="service">Select Service:</label>
+          <select name="service" id="service" required>
+            <option value="color_printing">Color Printing</option>
+            <option value="bw_printing">Black and White Printing</option>
+            <option value="binding">Binding Services</option>
+          </select>
+        </div>
+
+        <!-- Number of Copies -->
+        <div class="form-group">
+          <label for="copies">Number of Copies:</label>
+          <input type="number" name="copies" id="copies" required min="1" />
+        </div>
+
+        <!-- Paper Size -->
+        <div class="form-group">
+          <label for="paper_size">Paper Size:</label>
+          <select name="paper_size" id="paper_size">
+            <option value="A4">A4</option>
+            <option value="A3">A3</option>
+            <option value="Letter">Letter</option>
+          </select>
+        </div>
+
+        <!-- Binding Option -->
+        <div class="form-group">
+          <label for="binding_option">Binding Option (if applicable):</label>
+          <select name="binding_option" id="binding_option">
+            <option value="spiral">Spiral Binding</option>
+            <option value="perfect">Perfect Binding</option>
+          </select>
+        </div>
+
+        <input type="hidden" name="pdfname" value="<%= pdfname %>" />
+        <input type="hidden" name="filename" value="<%= filename %>" />
+
+        <!-- Display Total Cost -->
+        <p>Total Cost: <span id="totalCost">0</span></p>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Order</button>
+      </form>
+      <% } %>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>We appreciate your business!</p>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script>
+      // Ensure the DOM is fully loaded before running the script
+      document.addEventListener("DOMContentLoaded", function () {
+         
+         let pageCount = 0;
+   
+         // File Upload Handling to get page count
+         let pdfInput = document.getElementById("file_upload");
+   
+         if (pdfInput) {
+            pdfInput.onchange = function (event) {
+               var file = event.target.files[0];
+               var filereader = new FileReader();
+   
+               filereader.onload = function () {
+                  var typedarray = new Uint8Array(this.result);
+                  const task = pdfjsLib.getDocument(typedarray);
+   
+                  task.promise.then((pdf) => {
+                     // Set the page count from the PDF
+                     pageCount = pdf.numPages;
+                     console.log("Number of pages:", pageCount);
+   
+                     // Update the UI with the page count
+                     document.getElementById('pageCountDisplay').textContent = `Number of pages: ${pageCount}`;
+                  });
+               };
+   
+               filereader.readAsArrayBuffer(file);
+            };
+         }
+   
+         // Add event listener for form submission
+         let orderForm = document.getElementById("orderForm");
+         if (orderForm) {
+            orderForm.addEventListener("submit", function (event) {
+               // Add your form validation or processing here
+               console.log("Order form submitted");
+            });
+         }
+   
+         // Time slot buttons logic
+         const timeButtons = document.querySelectorAll('.time-slot-button');
+        const orderTimeInput = document.getElementById('orderTime');
+
+        timeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                timeButtons.forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+                orderTimeInput.value = this.getAttribute('data-time');
+            });
+        });
+
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            // Get the value from the time input
+            var timeInput = document.getElementById("orderTime").value;
+            
+            // Convert time input to hours and minutes
+            var timeParts = timeInput.split(":");
+            var hours = parseInt(timeParts[0]);
+            var minutes = parseInt(timeParts[1]);
+
+            // Set the time constraints (9:00 AM and 4:20 PM)
+            var isBeforeOpeningTime = hours < 9;
+            var isAfterClosingTime = (hours > 16) || (hours === 16 && minutes > 20);
+
+            // Display warning if the selected time is outside the allowed range
+            if (isBeforeOpeningTime || isAfterClosingTime) {
+                alert("Please select a time between 9:00 AM and 4:20 PM.");
+                event.preventDefault(); // Prevent the form from submitting
+            }
+        });
+   
+         // Radio button change event to calculate cost
+         const costElement = document.getElementById('totalCost');
+         const radios = document.querySelectorAll('input[name="colorType"]');
+   
+         if (radios && costElement) {
+            radios.forEach(radio => {
+               radio.addEventListener('change', function () {
+                  if (pageCount > 0) {
+                     const cost = this.value === 'colored' ? pageCount * 5 : pageCount * 2;
+                     costElement.textContent = `Total Cost: ₹${cost}`;
+                  } else {
+                     costElement.textContent = "Please upload a PDF first to calculate the cost.";
+                  }
+               });
+            });
+         }
+      });
+   </script>
+   

@@ -1,0 +1,115 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+}
+
+.search-bar {
+    margin-top: 10px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.order-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.order-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.order-card:hover {
+    transform: scale(1.03);
+}
+
+.order-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.order-body p {
+    margin: 8px 0;
+}
+
+.status {
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.pending {
+    background-color: #ff9800;
+    color: white;
+}
+
+.completed {
+    background-color: #4caf50;
+    color: white;
+}
+
+.order-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.complete {
+    background-color: #4caf50;
+    color: white;
+}
+
+.complete:hover {
+    background-color: #388e3c;
+}
+
+.delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete:hover {
+    background-color: #d32f2f;
+}

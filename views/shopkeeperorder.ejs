@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopkeeper Dashboard</title>
+</head>
+<body>
+    <!-- Access the passed user object -->
+    <h1>Welcome, <%= user.username %></h1> 
+    
+    <h2>Your Orders:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Email</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Number of Copies</th>
+                <th>Preferred Time Slot</th>
+                <th>Paper Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% user.printing_file.forEach(function(order) { %>
+                <tr>
+                    <td><%= order._id %></td>
+                    <td><%= order.Email %></td>
+                    <td><%= order.Select_Service %></td>
+                    <td><%= order.status %></td>
+                    <td><%= order.Number_of_Copies %></td>
+                    <td><%= order.Preferred_Time_Slot %></td>
+                    <td><%= order.Paper_Size %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

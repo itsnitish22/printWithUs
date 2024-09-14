@@ -1,0 +1,160 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/023/036/124/non_2x/abstract-color-background-design-fluid-gradient-composition-creative-illustration-for-poster-web-landing-page-cover-ad-greeting-card-promotion-eps-10-vector.jpg'); /* Add background image */
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    background-color: #4a148c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Card Styles */
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    margin: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 250px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #6a1b9a;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card-content a {
+    display: inline-block;
+    background-color: #4a148c;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.card-content a:hover {
+    background-color: #6a1b9a;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Cards */
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Order Form Styles */
+.order-form {
+    width: 50%;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Add transparency */
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 10px; /* Rounded corners */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6a1b9a;
+}
+
+/* Time Slot Warning */
+.warning-message {
+    color: red;
+    font-weight: bold;
+    display: none; /* Hidden by default */
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4a148c;
+    color: white;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+    .order-form {
+        width: 90%;
+    }
+}

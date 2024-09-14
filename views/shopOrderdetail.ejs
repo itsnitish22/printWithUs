@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Order Details Container */
+        .order-details {
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .order-details h1 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Order Info Styling */
+        .order-details p {
+            font-size: 1em;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .order-details p strong {
+            color: #000;
+        }
+
+        /* Link Styling */
+        .order-details a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .order-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Styling */
+        .back-button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            background-color: #4caf50; /* Matching 'View Details' button color */
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #388e3c; /* Darker green on hover */
+        }
+
+        /* Styling for the File Link */
+        .file-link {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .file-link:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-details">
+        <h1>Order Details</h1>
+        <p><strong>Order ID:</strong> <%= order._id %></p>
+        <p><strong>Name:</strong> <%= order.Name %></p>
+        <p><strong>Contact Number:</strong> <%= order.Contact_Number %></p>
+        <p><strong>Email:</strong> <%= order.Email %></p>
+        <p><strong>Service:</strong> <%= order.Select_Service %></p>
+        <p><strong>Copies:</strong> <%= order.Number_of_Copies %></p>
+        <p><strong>Paper Size:</strong> <%= order.Paper_Size %></p>
+        <p><strong>File:</strong> <a href="/file/<%= order.file.filename %>" target="_blank" class="file-link"><%= order.file.filename %></a></p>
+        <p><strong>Cost:</strong> $<%= order.cost %></p>
+        <a href="/shopkeeper" class="back-button">Back to Dashboard</a>
+    </div>
+</body>
+</html>
